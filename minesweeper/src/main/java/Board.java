@@ -1,31 +1,35 @@
-import com.googlecode.lanterna.screen.Screen;
-import com.googlecode.lanterna.terminal.DefaultTerminalFactory;
-import com.googlecode.lanterna.terminal.Terminal;
-
-import java.io.IOException;
-
-public class MinesweeperGame {
+public class Board {
     private Cell[][] grid;
-    private int width;
-    private int height;
-    private int numMines;
+    private final int width;
+    private final int height;
+    private final int numMines;
 
-    public MinesweeperGame(int width, int height, int numMines) {
+    public Board(int width, int height, int numMines) {
         this.width = width;
         this.height = height;
         this.numMines = numMines;
         this.grid = new Cell[height][width];
-        initializeGrid();
+        initializeBoard();
         placeMines();
         calculateAdjacentMines();
     }
-    private void initializeGrid() {
+
+    public int getHeight() {
+        return this.height;
+    }
+
+    public int getWidth() {
+        return this.width;
+    }
+
+    private void initializeBoard() {
         for (int row = 0; row < height; row++) {
             for (int col = 0; col < width; col++) {
                 grid[row][col] = new Cell(); // Initialize with default Cell
             }
         }
     }
+
     private void placeMines() {
         int minesPlaced = 0;
         while (minesPlaced < numMines) {
@@ -38,6 +42,7 @@ public class MinesweeperGame {
             }
         }
     }
+
     private void calculateAdjacentMines() {
         for (int row = 0; row < height; row++) {
             for (int col = 0; col < width; col++) {
@@ -48,6 +53,7 @@ public class MinesweeperGame {
             }
         }
     }
+
     private int countAdjacentMines(int row, int col) {
         int count = 0;
         for (int i = -1; i <= 1; i++) {
@@ -59,7 +65,11 @@ public class MinesweeperGame {
         }
         return count;
     }
+
     private boolean isWithinGrid(int row, int col) {
         return row >= 0 && row < height && col >= 0 && col < width;
+    }
+    public Cell getCell(int row, int col) {
+        return grid[row][col];
     }
 }

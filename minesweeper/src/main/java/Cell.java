@@ -1,11 +1,13 @@
 public class Cell {
     private boolean isMine;
+    private boolean isFlagged;
     private boolean isRevealed;
     private int adjacentMines;
     public Cell() {
         this.isMine = false;
         this.isRevealed = false;
         this.adjacentMines = 0;
+        this.isFlagged = false;
     }
     public Cell(boolean isMine, int adjacentMines) {
         this.isMine = isMine;
@@ -29,5 +31,11 @@ public class Cell {
     }
     public void setAdjacentMines(int adjacentMines) {
         this.adjacentMines = adjacentMines;
+    }
+    public boolean isFlagged() {
+        return this.isFlagged;
+    }
+    public void setFlagged(boolean flag) {
+        this.isFlagged = flag;
     }
 }

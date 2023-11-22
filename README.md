@@ -1,6 +1,6 @@
 # LDTS23
 
-## LDTS_T01_G - <MINSESWEEPER>
+## LDTS_T01_G - MINSESWEEPER
 
 O nosso projeto incide sobre o famoso jogo Minesweeper. O jogo consiste num campo de quadrados retangular, no qual estão escondidas bombas. O objetivo do jogador é revelar todos os quadrados que não têm minas, sem nunca tentar revelar os quadrados com minas. No caso de selecionar um quadrado com bomba, o jogo termina e o jogador perde.
 Selecionando os quadrados, tanto pode aparecer um número, que indica o número de minas que se encontram nas casas adjacentes, um espaço em branco ou uma bomba.

@@ -8,8 +8,8 @@ public class Draw {
         this.board = board;
         this.screen = screen;
     }
-    private void drawCell(Cell cell, int row, int col) {
-        char displayChar = 'O';
+    public void drawCell(Cell cell, int row, int col) {
+        char displayChar = '0';
         if (cell.isRevealed()) {
             if (cell.isMine()) {
                 displayChar = '*';

@@ -1,8 +1,8 @@
 public class Board {
     private Cell[][] grid;
-    private final int width;
-    private final int height;
-    private final int numMines;
+    private int width;
+    private int height;
+    private int numMines;
 
     public Board(int width, int height, int numMines) {
         this.width = width;
@@ -13,7 +13,12 @@ public class Board {
         placeMines();
         calculateAdjacentMines();
     }
-
+    public Board(Cell[][] grid,int width ,int height){
+        this.grid = grid;
+        this.width = width;
+        this.height = height;
+        calculateAdjacentMines();
+    }
     public int getHeight() {
         return this.height;
     }
@@ -72,4 +77,5 @@ public class Board {
     public Cell getCell(int row, int col) {
         return grid[row][col];
     }
+    public void setCell(int row,int col,Cell cell){grid[row][col] = cell;}
 }

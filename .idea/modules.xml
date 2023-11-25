@@ -2,7 +2,9 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/.idea/LDTS23.iml" filepath="$PROJECT_DIR$/.idea/LDTS23.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/minesweeper.iml" filepath="$PROJECT_DIR$/.idea/modules/minesweeper.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/minesweeper.main.iml" filepath="$PROJECT_DIR$/.idea/modules/minesweeper.main.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/minesweeper.test.iml" filepath="$PROJECT_DIR$/.idea/modules/minesweeper.test.iml" />
     </modules>
   </component>
 </project>

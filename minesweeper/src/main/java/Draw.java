@@ -2,23 +2,14 @@ import com.googlecode.lanterna.TextCharacter;
 import com.googlecode.lanterna.screen.Screen;
 
 public class Draw {
-    private final Board game;
-    private final Screen screen;
-
-    public Draw(Board game, Screen screen) {
-        this.game = game;
+    private  Board board;
+    private  Screen screen;
+    public Draw(Board board, Screen screen) {
+        this.board = board;
         this.screen = screen;
     }
-    public void drawGame() {
-        for (int row = 0; row < game.getHeight(); row++) {
-            for (int col = 0; col < game.getWidth(); col++) {
-                drawCell(game.getCell(row, col), row, col);
-            }
-        }
-    }
-
-    private void drawCell(Cell cell, int row, int col) {
-        char displayChar = ' ';
+    public void drawCell(Cell cell, int row, int col) {
+        char displayChar = '0';
         if (cell.isRevealed()) {
             if (cell.isMine()) {
                 displayChar = '*';
@@ -30,4 +21,16 @@ public class Draw {
         }
         screen.setCharacter(col, row, new TextCharacter(displayChar));
     }
+
+    public void drawBoard() {
+        for (int row = 0; row < board.getHeight(); row++) {
+            for (int col = 0; col < board.getWidth(); col++) {
+                drawCell(board.getCell(row, col), row, col);
+            }
+        }
+    }
 }
+
+
+
+

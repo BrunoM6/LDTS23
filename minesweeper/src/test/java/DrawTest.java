@@ -5,6 +5,10 @@ import org.junit.jupiter.api.Test;
 import org.mockito.Mockito;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.mockito.ArgumentMatchers.any;
+import static org.mockito.ArgumentMatchers.eq;
+import static org.mockito.Mockito.verify;
+import static org.mockito.Mockito.when;
 
 public class DrawTest {
 
@@ -20,17 +24,44 @@ public class DrawTest {
 
     @Test
     public void testDrawBoard() {
+        // Arrange the object cell.
+        Cell mockCell = Mockito.mock(Cell.class);
 
+        // Create a mock Board (1x1) with one cell.
+        when(mockBoard.getHeight()).thenReturn(1);
+        when(mockBoard.getWidth()).thenReturn(1);
+        when(mockBoard.getCell(0, 0)).thenReturn(mockCell);
+
+        // Create a mock Cell that is revealed and has 0 adjacent mines.
+        when(mockCell.isRevealed()).thenReturn(true);
+        when(mockCell.isMine()).thenReturn(false);
+        when(mockCell.getAdjacentMines()).thenReturn(5);
+
+        // Create a new draw object with the mocks.
+        Draw draw = new Draw(mockBoard, mockScreen);
+
+        //Act by drawing the board.
+        draw.drawBoard();
+
+        // Assert if it was correctly drawn.
+        verify(mockScreen).setCharacter(eq(0), eq(0), any(TextCharacter.class));
     }
 
     @Test
     public void testDrawCell() {
+        // Arrange the object cell.
         Cell mockCell = Mockito.mock(Cell.class);
-        Mockito.when(mockCell.isRevealed()).thenReturn(true);
-        Mockito.when(mockCell.isMine()).thenReturn(false);
-        Mockito.when(mockCell.getAdjacentMines()).thenReturn(3);
+
+        // Mock cell, revealed with 0 adjacent mines.
+        when(mockCell.isRevealed()).thenReturn(true);
+        when(mockCell.isMine()).thenReturn(false);
+        when(mockCell.getAdjacentMines()).thenReturn(3);
+
+        // Create the object draw.
         Draw draw = new Draw(mockBoard, mockScreen);
+
+        // Act by drawing the cell.
         draw.drawCell(mockCell, 1, 1);
-        Mockito.verify(mockScreen).setCharacter(1, 1, new TextCharacter('3'));
+        verify(mockScreen).setCharacter(1, 1, new TextCharacter('3'));
     }
 }

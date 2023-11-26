@@ -1,6 +1,6 @@
 # LDTS23
 
-## LDTS_T01_G - MINSESWEEPER
+## LDTS_T01_G - MINESWEEPER
 
 O nosso projeto incide sobre o famoso jogo Minesweeper. O jogo consiste num campo de quadrados retangular, no qual estão escondidas bombas. O objetivo do jogador é revelar todos os quadrados que não têm minas, sem nunca tentar revelar os quadrados com minas. No caso de selecionar um quadrado com bomba, o jogo termina e o jogador perde.
 Selecionando os quadrados, tanto pode aparecer um número, que indica o número de minas que se encontram nas casas adjacentes, um espaço em branco ou uma bomba.
@@ -8,83 +8,46 @@ Opcionalmente, o jogador pode marcar qualquer quadrado que acredite que contém 
 
 O projeto foi desenvolvido por João Proença, Bruno Moreira e Rodrigo Resende.
 
-### IMPLEMENTED FEATURES
+### FEATURES IMPLEMENTADAS
 
-Implementamos diversas features:
->Feature para inicializar o Board do jogo em modo default:
-![img.png](img.png)
+Já implementamos algumas funcionalidades base, como as classes Cell e Board que inicializam o board e guardam a informação necessária em relação ao mesmo, a class Draw que serve neste momento como base para a GUI do nosso projeto, e o básico game loop pattern, entre outras.
 
->Feature para colocar as minas no Board do jogo:
-![img_1.png](img_1.png)
-
->Feature para avaliar quantas minas existem à volta no Board:
-![img_2.png](img_2.png)
-
->Feature para desenhar as celulas todas do Board, contendo ou não minas, e estando ou não reveladas:
-![img_3.png](img_3.png)
-
-### PLANNED FEATURES
+### FEATURES PLANEADAS
 
 Além das features anteriores mencionadas iremos implementar muitas mais como por exemplo:
-> Implementar uma funcionalidade que nos permita escolher o tamanho do board do jogo;
-> Implementar uma funcionalidade que nos permita definir inicialmente quantas minas estarão presentes no jogo, de modo a dificultar ou facilitar o jogo para o utilizador;
+> Implementar inputs de rato;
+> Implementar uma funcionalidade de dificuldade que permite ao jogador escolher a dificuldade;
 > Implementar um menu muito mais funcional para o utilizador;
-> Entre outras que podem ser decididas futuramente;
+> Implementar uma funcionalidade de tempo e um consequente ranking system;
+> Entre outras que podem ser decididas futuramente.
+
+### DESIGN PATTERNS
+
+>State pattern. Utilizamos o state pattern para definir os diversos estados do jogo, de forma a, dependendo do estado do jogo, se alterar o comportamento interno do código, especialemente no que toca a GUI e inicialização do tabuleiro.
+>Factory method pattern. A classe base controller cria objetos mas permite às sublasses alterar o tipo de objeto que é criado.
+
+### CONSEQUÊNCIAS
+
+A utilização do state pattern ajuda a introduzir novos estados de forma simples, e a organizar as diferentes operações efetuadas mediante os inputs do jogador, também aumenta o número de classes, simplificando cada classe individual por consequência. O factory method adiciona uma camada de abstração aos controllers, facilitando a sua implementação e diminuindo a probabilidade de erro por consequência. Também separa a mecânica de criação de objeto da de implementação, permitindo ao desenvolvedor analisar e encontrar erros de forma mais rápida e simples.
+
+### MOCKUPS
+
+> Já temos alguns designs do projeto em mente e desenhados, estamos a considerar a utilização de pngs no tabuleiro, de forma a criar uma GUI fácil de entender.
+>Flag
+![flag.png](flag.png)
+>Bomba
+![bomb.png](bomb.png)
+>Espaço revelado
+![art.png](art.png)
+>Espaço não-revelado
+![art(1).png](art(1).png)
 
 
-### DESIGN
+#### CODE SMELLS CONHECIDOS
 
-> This section should be organized in different subsections, each describing a different design problem that you had to solve during the project. Each subsection should be organized in four different parts:
-
-- **Problem in Context.** The description of the design context and the concrete problem that motivated the instantiation of the pattern. Someone else other than the original developer should be able to read and understand all the motivations for the decisions made. When refering to the implementation before the pattern was applied, don’t forget to [link to the relevant lines of code](https://help.github.com/en/articles/creating-a-permanent-link-to-a-code-snippet) in the appropriate version.
-- **The Pattern.** Identify the design pattern to be applied, why it was selected and how it is a good fit considering the existing design context and the problem at hand.
-- **Implementation.** Show how the pattern roles, operations and associations were mapped to the concrete design classes. Illustrate it with a UML class diagram, and refer to the corresponding source code with links to the relevant lines (these should be [relative links](https://help.github.com/en/articles/about-readmes#relative-links-and-image-paths-in-readme-files). When doing this, always point to the latest version of the code.
-- **Consequences.** Benefits and liabilities of the design after the pattern instantiation, eventually comparing these consequences with those of alternative solutions.
-
-**Example of one of such subsections**:
-
-------
-
-#### THE JUMP ACTION OF THE KANGAROOBOY SHOULD BEHAVE DIFFERENTLY DEPENDING ON ITS STATE
-
-**Problem in Context**
-
-There was a lot of scattered conditional logic when deciding how the KangarooBoy should behave when jumping, as the jumps should be different depending on the items that came to his possession during the game (an helix will alow him to fly, driking a potion will allow him to jump double the height, etc.). This is a violation of the **Single Responsability Principle**. We could concentrate all the conditional logic in the same method to circumscribe the issue to that one method but the **Single Responsability Principle** would still be violated.
-
-**The Pattern**
-
-We have applied the **State** pattern. This pattern allows you to represent different states with different subclasses. We can switch to a different state of the application by switching to another implementation (i.e., another subclass). This pattern allowed to address the identified problems because […].
-
-**Implementation**
-
-The following figure shows how the pattern’s roles were mapped to the application classes.
-
-![img](https://www.fe.up.pt/~arestivo/page/img/examples/lpoo/state.svg)
-
-These classes can be found in the following files:
-
-- [Character](https://web.fe.up.pt/~arestivo/page/courses/2021/lpoo/template/src/main/java/Character.java)
-- [JumpAbilityState](https://web.fe.up.pt/~arestivo/page/courses/2021/lpoo/template/src/main/java/JumpAbilityState.java)
-- [DoubleJumpState](https://web.fe.up.pt/~arestivo/page/courses/2021/lpoo/template/src/main/java/DoubleJumpState.java)
-- [HelicopterState](https://web.fe.up.pt/~arestivo/page/courses/2021/lpoo/template/src/main/java/HelicopterState.java)
-- [IncreasedGravityState](https://web.fe.up.pt/~arestivo/page/courses/2021/lpoo/template/src/main/java/IncreasedGravityState.java)
-
-**Consequences**
-
-The use of the State Pattern in the current design allows the following benefits:
-
-- The several states that represent the character’s hability to jump become explicit in the code, instead of relying on a series of flags.
-- We don’t need to have a long set of conditional if or switch statements associated with the various states; instead, polimorphism is used to activate the right behavior.
-- There are now more classes and instances to manage, but still in a reasonable number.
-
-#### KNOWN CODE SMELLS
-
-> This section should describe 3 to 5 different code smells that you have identified in your current implementation.
-
-### TESTING
-
-- Screenshot of coverage report.
-- Link to mutation testing report.
+Nesta implementação base, encontramos alguns possíveis code smells, como o projeto está sujeito a mudança e em desenvolvimento, atentar a possíveis problemas de design o mais cedo possível apresenta-se como prioridade.
+> Constructor overloading em Board.java, temos diversos construtores para cenários diferentes, daí é necessário ser prudente e cuidadoso para utilizar o constructor correto na ocasião correta.
+> Draw.java apresenta-se como uma classe bastante complexa que gere muitos elementos, visto que gere todo o processo de desenho, no futuro será repartida e tranformada em métodos mais simples.
 
 ### SELF-EVALUATION
 

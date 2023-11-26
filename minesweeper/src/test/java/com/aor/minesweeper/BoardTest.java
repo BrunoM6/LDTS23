@@ -1,3 +1,7 @@
+package com.aor.minesweeper;
+
+import com.aor.minesweeper.model.game.elements.Cell;
+import com.aor.minesweeper.model.game.board.Board;
 import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.*;
 

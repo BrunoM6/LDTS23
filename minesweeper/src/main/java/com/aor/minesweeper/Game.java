@@ -1,3 +1,7 @@
+package com.aor.minesweeper;
+
+import com.aor.minesweeper.gui.Draw;
+import com.aor.minesweeper.model.game.board.Board;
 import com.googlecode.lanterna.TerminalSize;
 import com.googlecode.lanterna.input.KeyStroke;
 import com.googlecode.lanterna.input.KeyType;
@@ -16,12 +20,13 @@ import java.net.URL;
 public class Game {
     private final Screen screen;
     private final Board board;
+    
     public Game() throws IOException, URISyntaxException, FontFormatException {
         int col, row, mines;
-        col = 9;
-        row = 9;
+        col = 40;
+        row = 40;
         mines = 10;
-        board = new Board(col,row,mines);
+        board = new Board(15,15,mines);
         AWTTerminalFontConfiguration fontConfig = loadFont();
         Terminal terminal = createTerminal(col, row, fontConfig);
         screen = createScreen(terminal);

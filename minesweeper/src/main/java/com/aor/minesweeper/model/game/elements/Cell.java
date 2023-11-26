@@ -1,3 +1,4 @@
+package com.aor.minesweeper.model.game.elements;
 public class Cell {
     private boolean isMine;
     private boolean isFlagged;

@@ -23,7 +23,7 @@ public class Draw {
         } else if (cell.isFlagged()) {
             displayChar = 'F';
         }
-        screen.setCharacter(col + screen.getTerminalSize().getColumns()/2 - board.getWidth()/2, row + screen.getTerminalSize().getRows()/2 - board.getHeight()/2, new TextCharacter(displayChar));
+        screen.setCharacter(col , row , new TextCharacter(displayChar));
     }
 
     public void drawBoard() {

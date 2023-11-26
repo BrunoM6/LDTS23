@@ -10,16 +10,27 @@ O projeto foi desenvolvido por João Proença, Bruno Moreira e Rodrigo Resende.
 
 ### IMPLEMENTED FEATURES
 
-> This section should contain a list of implemented features and their descriptions. In the end of the section, include two or three screenshots that illustrate the most important features.
+Implementamos diversas features:
+>Feature para inicializar o Board do jogo em modo default:
+![img.png](img.png)
 
-**Examples**:
+>Feature para colocar as minas no Board do jogo:
+![img_1.png](img_1.png)
 
-- **Jumping** - The game character will jump when the space bar key is pressed.
-- **Getting hidden coins** - When the game character hits a platform from below (by jumping beneath it) it will smash that segment of the platform and will get any coins that may exist hidden there.
+>Feature para avaliar quantas minas existem à volta no Board:
+![img_2.png](img_2.png)
+
+>Feature para desenhar as celulas todas do Board, contendo ou não minas, e estando ou não reveladas:
+![img_3.png](img_3.png)
 
 ### PLANNED FEATURES
 
-> This section is similar to the previous one but should list the features that are not yet implemented. Instead of screenshots you should include GUI mock-ups for the planned features.
+Além das features anteriores mencionadas iremos implementar muitas mais como por exemplo:
+> Implementar uma funcionalidade que nos permita escolher o tamanho do board do jogo;
+> Implementar uma funcionalidade que nos permita definir inicialmente quantas minas estarão presentes no jogo, de modo a dificultar ou facilitar o jogo para o utilizador;
+> Implementar um menu muito mais funcional para o utilizador;
+> Entre outras que podem ser decididas futuramente;
+
 
 ### DESIGN
 
@@ -77,9 +88,6 @@ The use of the State Pattern in the current design allows the following benefits
 
 ### SELF-EVALUATION
 
-> In this section describe how the work regarding the project was divided between the students. In the event that members of the group do not agree on a work distribution, the group should send an email to the teacher explaining the disagreement.
-
-**Example**:
-
-- John Doe: 40%
-- Jane Doe: 60%
+- João Proença: 35%
+- Bruno Moreira: 35%
+- Rodrigo Resende: 30%

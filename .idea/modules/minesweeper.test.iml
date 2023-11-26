@@ -3,14 +3,20 @@
   <component name="NewModuleRootManager">
     <output-test url="file://$MODULE_DIR$/../../minesweeper/build/classes/java/test" />
     <exclude-output />
-    <content url="file://$MODULE_DIR$/../../minesweeper/src/test" />
+    <content url="file://$MODULE_DIR$/../../minesweeper/src/test">
+      <sourceFolder url="file://$MODULE_DIR$/../../minesweeper/src/test/java" isTestSource="true" />
+    </content>
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />
     <orderEntry type="module" module-name="minesweeper.main" />
     <orderEntry type="library" name="Gradle: com.googlecode.lanterna:lanterna:3.1.1" level="project" />
     <orderEntry type="library" name="Gradle: org.junit.jupiter:junit-jupiter:5.9.1" level="project" />
+    <orderEntry type="library" name="Gradle: org.mockito:mockito-core:3.7.7" level="project" />
     <orderEntry type="library" name="Gradle: org.junit.jupiter:junit-jupiter-params:5.9.1" level="project" />
     <orderEntry type="library" name="Gradle: org.junit.jupiter:junit-jupiter-api:5.9.1" level="project" />
+    <orderEntry type="library" name="Gradle: net.bytebuddy:byte-buddy:1.10.19" level="project" />
+    <orderEntry type="library" name="Gradle: net.bytebuddy:byte-buddy-agent:1.10.19" level="project" />
+    <orderEntry type="library" name="Gradle: org.objenesis:objenesis:3.1" level="project" />
     <orderEntry type="library" scope="PROVIDED" name="Gradle: org.apiguardian:apiguardian-api:1.1.2" level="project" />
     <orderEntry type="library" name="Gradle: org.junit.platform:junit-platform-commons:1.9.1" level="project" />
     <orderEntry type="library" name="Gradle: org.opentest4j:opentest4j:1.2.0" level="project" />

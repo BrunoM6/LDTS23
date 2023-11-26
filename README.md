@@ -36,7 +36,7 @@ Já temos alguns designs do projeto em mente e desenhados, estamos a considerar 
 
 
 >Flag
-![flag.png](flag.png)
+![Flag.png](Flag.png)
 >Bomba
 ![bomb.png](bomb.png)
 >Espaço revelado

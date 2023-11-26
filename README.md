@@ -32,7 +32,9 @@ A utilização do state pattern ajuda a introduzir novos estados de forma simple
 
 ### MOCKUPS
 
-> Já temos alguns designs do projeto em mente e desenhados, estamos a considerar a utilização de pngs no tabuleiro, de forma a criar uma GUI fácil de entender.
+Já temos alguns designs do projeto em mente e desenhados, estamos a considerar a utilização de pngs no tabuleiro, de forma a criar uma GUI fácil de entender.
+
+
 >Flag
 ![flag.png](flag.png)
 >Bomba

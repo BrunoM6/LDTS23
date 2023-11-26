@@ -1,3 +1,8 @@
+package com.aor.minesweeper;
+
+import com.aor.minesweeper.gui.Draw;
+import com.aor.minesweeper.model.game.board.Board;
+import com.aor.minesweeper.model.game.elements.Cell;
 import com.googlecode.lanterna.TextCharacter;
 import com.googlecode.lanterna.screen.Screen;
 import org.junit.jupiter.api.BeforeEach;

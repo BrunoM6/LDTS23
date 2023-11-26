@@ -1,3 +1,5 @@
+package com.aor.minesweeper;
+
 import java.awt.*;
 import java.io.IOException;
 import java.net.URISyntaxException;
@@ -7,6 +9,4 @@ public class App {
         Game game  = new Game();
         game.run();
     }
-
-
 }

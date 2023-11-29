@@ -17,15 +17,12 @@ import java.net.URL;
 
 public class LanternaGUI implements GUI {
     private final Screen screen;
-    private final Board board;
     public LanternaGUI(Screen screen,Board board) {
         this.screen = screen;
-        this.board = board;
     }
     public LanternaGUI(int width, int height,Board board) throws IOException, FontFormatException, URISyntaxException {
         AWTTerminalFontConfiguration fontConfig = loadFont();
         Terminal terminal = createTerminal(width, height, fontConfig);
-        this.board = board;
         this.screen = createScreen(terminal);
     }
     private Screen createScreen(Terminal terminal) throws IOException{
@@ -66,14 +63,14 @@ public class LanternaGUI implements GUI {
         } else if (cell.isFlagged()) {
             displayChar = 'F';
         }
-        screen.setCharacter(col + screen.getTerminalSize().getColumns()/2 - board.getWidth()/2, row + screen.getTerminalSize().getRows()/2 - board.getHeight()/2, new TextCharacter(displayChar));
+        screen.setCharacter(col, row , new TextCharacter(displayChar));
     }
 
     @Override
-    public void drawBoard() {
+    public void drawBoard(Board board) {
         for (int row = 0 ; row < board.getHeight(); row++) {
             for (int col = 0; col < board.getWidth(); col++) {
-                drawCell(board.getCell(row, col), row, col);
+                drawCell(board.getCell(row, col), row + screen.getTerminalSize().getRows()/2 - board.getHeight()/2, col + screen.getTerminalSize().getColumns()/2 - board.getWidth()/2);
             }
         }
     }

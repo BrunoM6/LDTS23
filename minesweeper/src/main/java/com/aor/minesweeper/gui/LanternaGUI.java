@@ -1,35 +1,29 @@
-package com.aor.minesweeper;
+package com.aor.minesweeper.gui;
 
-import com.aor.minesweeper.gui.Draw;
 import com.aor.minesweeper.model.game.board.Board;
+import com.aor.minesweeper.model.game.elements.Cell;
 import com.googlecode.lanterna.TerminalSize;
-import com.googlecode.lanterna.input.KeyStroke;
-import com.googlecode.lanterna.input.KeyType;
+import com.googlecode.lanterna.TextCharacter;
 import com.googlecode.lanterna.screen.Screen;
 import com.googlecode.lanterna.screen.TerminalScreen;
 import com.googlecode.lanterna.terminal.DefaultTerminalFactory;
 import com.googlecode.lanterna.terminal.Terminal;
 import com.googlecode.lanterna.terminal.swing.AWTTerminalFontConfiguration;
-
 import java.awt.*;
 import java.io.File;
 import java.io.IOException;
 import java.net.URISyntaxException;
 import java.net.URL;
 
-public class Game {
+public class LanternaGUI implements GUI {
     private final Screen screen;
-    private final Board board;
-    
-    public Game() throws IOException, URISyntaxException, FontFormatException {
-        int col, row, mines;
-        col = 50;
-        row = 50;
-        mines = 10;
-        board = new Board(15,15,mines);
+    public LanternaGUI(Screen screen,Board board) {
+        this.screen = screen;
+    }
+    public LanternaGUI(int width, int height,Board board) throws IOException, FontFormatException, URISyntaxException {
         AWTTerminalFontConfiguration fontConfig = loadFont();
-        Terminal terminal = createTerminal(col, row, fontConfig);
-        screen = createScreen(terminal);
+        Terminal terminal = createTerminal(width, height, fontConfig);
+        this.screen = createScreen(terminal);
     }
     private Screen createScreen(Terminal terminal) throws IOException{
         final Screen screen1;
@@ -39,7 +33,7 @@ public class Game {
         screen1.doResizeIfNecessary();
         return screen1;
     }
-    private Terminal createTerminal(int col,int row ,AWTTerminalFontConfiguration fontConfig) throws IOException {
+    private Terminal createTerminal(int col, int row , AWTTerminalFontConfiguration fontConfig) throws IOException {
         TerminalSize terminalSize = new TerminalSize(col, row);
         DefaultTerminalFactory terminalFactory = new DefaultTerminalFactory().setInitialTerminalSize(terminalSize);
         terminalFactory.setForceAWTOverSwing(true);
@@ -57,24 +51,45 @@ public class Game {
         AWTTerminalFontConfiguration fontConfig = AWTTerminalFontConfiguration.newInstance(loadedFont);
         return fontConfig;
     }
-    private void draw() throws IOException {
-        screen.clear();
-        Draw draw = new Draw(board,screen);
-        draw.drawBoard();
-        screen.refresh();
+    @Override
+    public void drawCell(Cell cell, int row, int col) {
+        char displayChar = '-';
+        if (cell.isRevealed()) {
+            if (cell.isMine()) {
+                displayChar = '*';
+            } else {
+                displayChar = (char) ('0' + cell.getAdjacentMines());
+            }
+        } else if (cell.isFlagged()) {
+            displayChar = 'F';
+        }
+        screen.setCharacter(col, row , new TextCharacter(displayChar));
     }
-    public void run() throws IOException {
-        boolean run = true;
-        while(run){
-            draw();
-            KeyStroke key = screen.readInput();
-            if(key.getKeyType() == KeyType.EOF)run = false;
-            else if (key.getKeyType() == KeyType.Character && key.getCharacter() == 'q')screen.close();
-            try {
-                Thread.sleep(1000);
-            } catch (InterruptedException e) {
-                throw new RuntimeException(e);
+
+    @Override
+    public void drawBoard(Board board) {
+        for (int row = 0 ; row < board.getHeight(); row++) {
+            for (int col = 0; col < board.getWidth(); col++) {
+                drawCell(board.getCell(row, col), row + screen.getTerminalSize().getRows()/2 - board.getHeight()/2, col + screen.getTerminalSize().getColumns()/2 - board.getWidth()/2);
             }
         }
+    }
+    @Override
+    public void drawClock() {
+
+    }
+    @Override
+    public void clear() {
+        screen.clear();
+    }
+
+    @Override
+    public void refresh() throws IOException {
+        screen.refresh();
+    }
+
+    @Override
+    public void close() throws IOException {
+        screen.close();
     }
 }

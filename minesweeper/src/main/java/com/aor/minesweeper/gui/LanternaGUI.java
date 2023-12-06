@@ -2,8 +2,11 @@ package com.aor.minesweeper.gui;
 
 import com.aor.minesweeper.model.game.board.Board;
 import com.aor.minesweeper.model.game.elements.Cell;
+import com.aor.minesweeper.model.game.elements.Clock;
+import com.googlecode.lanterna.TerminalPosition;
 import com.googlecode.lanterna.TerminalSize;
 import com.googlecode.lanterna.TextCharacter;
+import com.googlecode.lanterna.graphics.TextGraphics;
 import com.googlecode.lanterna.screen.Screen;
 import com.googlecode.lanterna.screen.TerminalScreen;
 import com.googlecode.lanterna.terminal.DefaultTerminalFactory;
@@ -14,6 +17,8 @@ import java.io.File;
 import java.io.IOException;
 import java.net.URISyntaxException;
 import java.net.URL;
+
+import static jdk.jfr.internal.Utils.formatDuration;
 
 public class LanternaGUI implements GUI {
     private final Screen screen;
@@ -75,9 +80,17 @@ public class LanternaGUI implements GUI {
         }
     }
     @Override
-    public void drawClock() {
+    public void drawClock(Clock clock, int x, int y) {
+        TextGraphics textGraphics = screen.newTextGraphics();
 
+        String timeLeftString = formatDuration(clock.getTimeLeft());
+        textGraphics.putString(new TerminalPosition(x, y), timeLeftString);
+
+        if (!clock.isRunning()) {
+            textGraphics.putString(new TerminalPosition(x, y + 1), "PAUSED");
+        }
     }
+
     @Override
     public void clear() {
         screen.clear();

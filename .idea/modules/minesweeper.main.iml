@@ -10,5 +10,6 @@
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />
     <orderEntry type="library" name="Gradle: com.googlecode.lanterna:lanterna:3.1.1" level="project" />
+    <orderEntry type="library" name="Gradle: ar.com.hjg:pngj:2.1.0" level="project" />
   </component>
 </module>
